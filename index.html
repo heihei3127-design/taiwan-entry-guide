@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>港澳居民入境台湾申请指南｜网签</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@500;700;900&family=Noto+Sans+TC:wght@400;500;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#EEF1EE;
+    --card:#FBFBF9;
+    --ink:#1F2D50;
+    --ink-soft:#54607A;
+    --stamp:#AE3A34;
+    --stamp-soft:#c96a63;
+    --brass:#93763F;
+    --line:#D8DBD1;
+    --ok:#3E6B4F;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    background-image:
+      repeating-linear-gradient(0deg, rgba(31,45,80,0.02) 0px, rgba(31,45,80,0.02) 1px, transparent 1px, transparent 26px);
+    color:var(--ink);
+    font-family:"Noto Sans TC", sans-serif;
+    line-height:1.7;
+    padding-bottom:60px;
+  }
+  .wrap{max-width:760px; margin:0 auto; padding:0 20px;}
+
+  /* ---------- HEADER / BARCODE ---------- */
+  .permit-strip{
+    background:var(--ink);
+    color:#fff;
+    padding:10px 0 6px;
+  }
+  .barcode{
+    height:34px;
+    display:flex;
+    align-items:stretch;
+    gap:2px;
+    margin:0 auto 6px;
+    max-width:760px;
+    padding:0 20px;
+  }
+  .barcode span{ background:#fff; display:block; }
+  .permit-no{
+    text-align:center;
+    font-family:"Roboto Mono", monospace;
+    font-size:11px;
+    letter-spacing:2px;
+    color:#c7cde0;
+    padding-bottom:8px;
+  }
+
+  header.hero{
+    background:var(--card);
+    border-bottom:1px solid var(--line);
+    padding:34px 0 30px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:16px;
+  }
+  .eyebrow{
+    font-family:"Roboto Mono", monospace;
+    font-size:12px;
+    letter-spacing:3px;
+    color:var(--brass);
+    text-transform:uppercase;
+  }
+  h1{
+    font-family:"Noto Serif TC", serif;
+    font-weight:900;
+    font-size:clamp(26px,6vw,36px);
+    margin:8px 0 6px;
+    color:var(--ink);
+  }
+  .subtitle{
+    font-size:15px;
+    color:var(--ink-soft);
+    max-width:46ch;
+  }
+  .stamp{
+    flex:0 0 auto;
+    width:96px; height:96px;
+    border:2.5px solid var(--stamp);
+    border-radius:50%;
+    color:var(--stamp);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    font-family:"Noto Serif TC", serif;
+    font-weight:700;
+    font-size:13px;
+    line-height:1.3;
+    transform:rotate(-9deg);
+    opacity:0.9;
+    position:relative;
+  }
+  .stamp::before{
+    content:"";
+    position:absolute; inset:6px;
+    border:1px solid var(--stamp);
+    border-radius:50%;
+  }
+  .facts{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-top:22px;
+  }
+  .fact{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:3px;
+    padding:8px 14px;
+    font-size:13px;
+    color:var(--ink-soft);
+  }
+  .fact b{ color:var(--ink); font-family:"Roboto Mono",monospace; }
+
+  /* ---------- SECTIONS ---------- */
+  section{ padding:38px 0; border-bottom:1px solid var(--line); }
+  .sec-head{ display:flex; align-items:baseline; gap:12px; margin-bottom:20px; }
+  .sec-num{
+    font-family:"Noto Serif TC", serif;
+    font-size:22px;
+    color:var(--brass);
+    font-weight:700;
+  }
+  .sec-title{
+    font-family:"Noto Serif TC", serif;
+    font-size:21px;
+    font-weight:700;
+    color:var(--ink);
+  }
+  .sec-sub{ font-size:13px; color:var(--ink-soft); margin:-14px 0 22px; }
+
+  /* checklist */
+  .checklist{ list-style:none; margin:0; padding:0; display:grid; gap:8px; }
+  .checklist li{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:6px;
+    padding:13px 16px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    cursor:pointer;
+    transition:border-color .15s, background .15s;
+    font-size:14.5px;
+  }
+  .checklist li:hover{ border-color:var(--brass); }
+  .checklist li.done{ background:#F1F4F0; }
+  .checklist li.done span.txt{ text-decoration:line-through; color:var(--ink-soft); }
+  .box{
+    flex:0 0 auto;
+    width:19px; height:19px;
+    border:1.5px solid var(--ink-soft);
+    border-radius:4px;
+    position:relative;
+  }
+  .checklist li.done .box{ background:var(--ok); border-color:var(--ok); }
+  .checklist li.done .box::after{
+    content:"";
+    position:absolute; left:5px; top:1px;
+    width:5px; height:9px;
+    border:solid #fff;
+    border-width:0 2px 2px 0;
+    transform:rotate(45deg);
+  }
+
+  /* steps timeline */
+  .timeline{ position:relative; padding-left:6px; }
+  .timeline::before{
+    content:"";
+    position:absolute; left:19px; top:6px; bottom:6px;
+    width:1px;
+    background:repeating-linear-gradient(180deg, var(--brass) 0 4px, transparent 4px 8px);
+  }
+  .step{
+    position:relative;
+    padding:0 0 26px 52px;
+  }
+  .step:last-child{ padding-bottom:0; }
+  .step-num{
+    position:absolute; left:0; top:0;
+    width:40px; height:40px;
+    border-radius:50%;
+    background:var(--ink);
+    color:#fff;
+    display:flex; align-items:center; justify-content:center;
+    font-family:"Roboto Mono", monospace;
+    font-size:14px;
+    z-index:1;
+  }
+  .step h3{
+    margin:2px 0 4px;
+    font-size:15.5px;
+    font-family:"Noto Sans TC",sans-serif;
+    font-weight:700;
+    color:var(--ink);
+  }
+  .step p{ margin:0; font-size:14px; color:var(--ink-soft); }
+
+  /* url cta - boarding pass style */
+  .ticket{
+    background:var(--ink);
+    color:#fff;
+    border-radius:8px;
+    padding:22px 24px;
+    position:relative;
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:space-between;
+    align-items:center;
+    gap:16px;
+  }
+  .ticket::before, .ticket::after{
+    content:"";
+    position:absolute;
+    width:20px; height:20px;
+    background:var(--paper);
+    border-radius:50%;
+    top:50%; transform:translateY(-50%);
+  }
+  .ticket::before{ left:-10px; }
+  .ticket::after{ right:-10px; }
+  .ticket-info .label{
+    font-family:"Roboto Mono",monospace;
+    font-size:11px;
+    letter-spacing:2px;
+    color:#a9b2cf;
+    text-transform:uppercase;
+  }
+  .ticket-info .name{
+    font-family:"Noto Serif TC",serif;
+    font-size:17px;
+    font-weight:700;
+    margin-top:4px;
+  }
+  .ticket a.btn{
+    background:var(--stamp);
+    color:#fff;
+    text-decoration:none;
+    padding:12px 22px;
+    border-radius:5px;
+    font-weight:700;
+    font-size:14px;
+    white-space:nowrap;
+    transition:background .15s;
+  }
+  .ticket a.btn:hover{ background:var(--stamp-soft); }
+  .url-note{ font-size:12.5px; color:var(--ink-soft); margin-top:10px; }
+
+  /* warnings */
+  .warn-box{
+    border:1px solid var(--stamp);
+    background:#FBF1F0;
+    border-radius:6px;
+    padding:6px 20px;
+  }
+  .warn-box ul{ margin:14px 0; padding-left:0; list-style:none; }
+  .warn-box li{
+    display:flex; gap:10px;
+    padding:12px 0;
+    border-bottom:1px dashed #e3c3c0;
+    font-size:14px;
+    color:var(--ink);
+  }
+  .warn-box li:last-child{ border-bottom:none; }
+  .warn-box li .mark{ color:var(--stamp); font-weight:700; flex:0 0 auto; }
+
+  footer{
+    text-align:center;
+    font-size:12px;
+    color:var(--ink-soft);
+    padding-top:28px;
+  }
+
+  @media (max-width:480px){
+    .stamp{ width:78px; height:78px; font-size:11px; }
+    .ticket{ flex-direction:column; align-items:stretch; text-align:center; }
+    .ticket a.btn{ text-align:center; }
+  }
+</style>
+</head>
+<body>
+
+<div class="permit-strip">
+  <div class="barcode" id="barcode"></div>
+  <div class="permit-no">GUIDE No. HKM-2026-ENTRY-VISA-30D</div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="hero-top">
+      <div>
+        <div class="eyebrow">港澳居民 · 网路签证</div>
+        <h1>入境台湾申请指南</h1>
+        <p class="subtitle">单次入出境・停留30日・不得延期・免费申请（网签）</p>
+      </div>
+      <div class="stamp">符合<br>网签<br>资格</div>
+    </div>
+    <div class="facts">
+      <div class="fact">身分 <b>港澳永久居民</b></div>
+      <div class="fact">停留天数 <b>30 天</b></div>
+      <div class="fact">出入境次数 <b>单次</b></div>
+      <div class="fact">申请费用 <b>NT$0</b></div>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section id="prep">
+    <div class="sec-head">
+      <span class="sec-num">壹</span>
+      <span class="sec-title">准备资料</span>
+    </div>
+    <p class="sec-sub">网签不须上传文件或照片，但下列资料与正本入境时都要用到。</p>
+    <ul class="checklist" id="checklist">
+      <li><span class="box"></span><span class="txt">有效期3个月以上的港澳特区护照或BNO护照（正本）</span></li>
+      <li><span class="box"></span><span class="txt">香港永久性居民身分证（正本）</span></li>
+      <li><span class="box"></span><span class="txt">可收信的电子邮件信箱（接收验证码）</span></li>
+      <li><span class="box"></span><span class="txt">来台联络地址（饭店中文地址）</span></li>
+      <li><span class="box"></span><span class="txt">联络电话</span></li>
+      <li><span class="box"></span><span class="txt">预定入出境航班资讯（去程、回程班次）</span></li>
+      <li><span class="box"></span><span class="txt">来回机票订位或购票证明</span></li>
+    </ul>
+  </section>
+
+  <section id="flow">
+    <div class="sec-head">
+      <span class="sec-num">贰</span>
+      <span class="sec-title">申请流程</span>
+    </div>
+    <div class="timeline">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h3>进入官方网签网站</h3>
+        <p>移民署「港澳居民网路申请临时停留许可」线上系统。</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h3>输入 Email 取得验证码</h3>
+        <p>约5分钟内寄达；未收到才点「再次寄送」，否则前一组验证码失效。</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h3>填写个人资料</h3>
+        <p>护照号码、中文姓名（须与护照一致）、来台地址、电话、机船班资讯。</p>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <h3>核对后送出申请</h3>
+        <p>资料一经送出，核准前仅能自行撤销重新申请一次。</p>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <h3>系统即时审批</h3>
+        <p>多数情况下核准结果会立即显示。</p>
+      </div>
+      <div class="step">
+        <div class="step-num">6</div>
+        <h3>列印入境登记表</h3>
+        <p>以 A4 白色空白纸列印，不可使用回收纸。</p>
+      </div>
+      <div class="step">
+        <div class="step-num">7</div>
+        <h3>亲笔签名</h3>
+        <p>于表格「旅客签名」栏位签名。</p>
+      </div>
+      <div class="step">
+        <div class="step-num">8</div>
+        <h3>携带文件登机、入境查验</h3>
+        <p>列印表格＋港澳护照正本＋身分证正本＋来回机票，一并出示。</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="link">
+    <div class="sec-head">
+      <span class="sec-num">参</span>
+      <span class="sec-title">申请网址</span>
+    </div>
+    <div class="ticket">
+      <div class="ticket-info">
+        <div class="label">Official Application</div>
+        <div class="name">港澳居民网路申请临时停留许可</div>
+      </div>
+      <a class="btn" href="https://www.immigration.gov.tw/5385/7244/7250/7296/停留/75544/" target="_blank" rel="noopener">前往官网申请 →</a>
+    </div>
+    <p class="url-note">内政部移民署官方网站，网址开头为 immigration.gov.tw。移民署不提供加急或电话查询进度服务，建议出发前 1–2 周申请，核准后再订机票与住宿。</p>
+  </section>
+
+  <section id="notes" style="border-bottom:none;">
+    <div class="sec-head">
+      <span class="sec-num">肆</span>
+      <span class="sec-title">注意事项</span>
+    </div>
+    <div class="warn-box">
+      <ul>
+        <li><span class="mark">✕</span><span>效期内仅能入出境 1 次，停留最长 30 日，<b>不得延期</b>。</span></li>
+        <li><span class="mark">✕</span><span>核准「前」资料错误可自行撤销重新申请，限一次；核准「后」若资料有误，无法修改，须改办付费云端申请。</span></li>
+        <li><span class="mark">✕</span><span>护照号码、身分证号码、中文姓名须与过去入境纪录完全一致，否则系统可能无法核准。</span></li>
+        <li><span class="mark">✕</span><span>不接受临柜或邮寄申请，也没有加急服务。</span></li>
+        <li><span class="mark">✕</span><span>入境时港澳护照效期须仍有 3 个月以上。</span></li>
+        <li><span class="mark">✕</span><span>大陆出生者请一并携带可证明港澳永久居民身分之文件，以备入境查验。</span></li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  资料整理自内政部移民署及台北经济文化办事处公开资讯，实际规定以官网最新公告为准。
+</footer>
+
+<script>
+  // barcode decoration
+  const bc = document.getElementById('barcode');
+  for(let i=0;i<48;i++){
+    const s = document.createElement('span');
+    const w = [2,2,3,1,4,2,1,3][i%8];
+    s.style.width = w+'px';
+    s.style.opacity = (i%7===0) ? 0.3 : 1;
+    bc.appendChild(s);
+  }
+
+  // checklist toggle (in-memory only, no persistence)
+  document.querySelectorAll('#checklist li').forEach(li=>{
+    li.addEventListener('click', ()=> li.classList.toggle('done'));
+  });
+</script>
+
+</body>
+</html>
