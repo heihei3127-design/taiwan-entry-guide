@@ -281,6 +281,70 @@
   .warn-box li:last-child{ border-bottom:none; }
   .warn-box li .mark{ color:var(--stamp); font-weight:700; flex:0 0 auto; }
 
+  /* screenshot gallery */
+  .shot-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(150px,1fr));
+    gap:12px;
+  }
+  .shot{
+    border:1px solid var(--line);
+    border-radius:6px;
+    overflow:hidden;
+    padding:0;
+    background:var(--card);
+    cursor:zoom-in;
+    display:block;
+    width:100%;
+  }
+  .shot img{
+    display:block;
+    width:100%;
+    height:150px;
+    object-fit:cover;
+    object-position:top;
+    transition:transform .2s;
+  }
+  .shot:hover img{ transform:scale(1.04); }
+  .shot .cap{
+    display:block;
+    font-size:12px;
+    color:var(--ink-soft);
+    padding:7px 10px;
+    border-top:1px solid var(--line);
+    text-align:left;
+  }
+
+  /* lightbox */
+  .lightbox{
+    position:fixed; inset:0;
+    background:rgba(15,20,35,0.9);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:999;
+    padding:32px;
+    cursor:zoom-out;
+  }
+  .lightbox.open{ display:flex; }
+  .lightbox img{
+    max-width:100%;
+    max-height:100%;
+    border-radius:6px;
+    box-shadow:0 12px 44px rgba(0,0,0,.45);
+  }
+  .lightbox-close{
+    position:absolute;
+    top:18px; right:22px;
+    background:none;
+    border:1px solid rgba(255,255,255,.4);
+    color:#fff;
+    width:36px; height:36px;
+    border-radius:50%;
+    font-size:18px;
+    cursor:pointer;
+  }
+
   footer{
     text-align:center;
     font-size:12px;
@@ -292,6 +356,91 @@
     .stamp{ width:78px; height:78px; font-size:11px; }
     .ticket{ flex-direction:column; align-items:stretch; text-align:center; }
     .ticket a.btn{ text-align:center; }
+  }
+
+  /* screenshots gallery */
+  .gallery{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(220px,1fr));
+    gap:14px;
+  }
+  .gallery figure{
+    margin:0;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:6px;
+    overflow:hidden;
+    cursor:pointer;
+    transition:border-color .15s, transform .15s;
+  }
+  .gallery figure:hover{ border-color:var(--brass); transform:translateY(-2px); }
+  .gallery img{
+    width:100%;
+    display:block;
+    aspect-ratio:16/9;
+    object-fit:cover;
+    object-position:top;
+  }
+  .gallery figcaption{
+    font-size:12.5px;
+    color:var(--ink-soft);
+    padding:9px 12px;
+    line-height:1.5;
+  }
+
+  /* lightbox */
+  .lightbox{
+    display:none;
+    position:fixed; inset:0;
+    background:rgba(15,20,35,0.92);
+    z-index:1000;
+    align-items:center;
+    justify-content:center;
+    padding:40px;
+  }
+  .lightbox.open{ display:flex; }
+  .lightbox img{
+    max-width:90vw;
+    max-height:85vh;
+    object-fit:contain;
+    border-radius:4px;
+    box-shadow:0 10px 40px rgba(0,0,0,0.5);
+  }
+  .lightbox-close{
+    position:absolute;
+    top:22px; right:30px;
+    color:#fff;
+    font-size:34px;
+    cursor:pointer;
+    line-height:1;
+    opacity:0.8;
+  }
+  .lightbox-close:hover{ opacity:1; }
+  .lb-nav{
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    background:rgba(255,255,255,0.12);
+    border:none;
+    color:#fff;
+    font-size:28px;
+    width:48px; height:48px;
+    border-radius:50%;
+    cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .lb-nav:hover{ background:rgba(255,255,255,0.24); }
+  .lb-prev{ left:20px; }
+  .lb-next{ right:20px; }
+  .lb-counter{
+    position:absolute;
+    bottom:24px;
+    left:50%;
+    transform:translateX(-50%);
+    color:#c7cde0;
+    font-family:"Roboto Mono", monospace;
+    font-size:12px;
+    letter-spacing:1px;
   }
 </style>
 </head>
@@ -404,7 +553,7 @@
     <p class="url-note">内政部移民署官方网站，网址开头为 immigration.gov.tw。移民署不提供加急或电话查询进度服务，建议出发前 1–2 周申请，核准后再订机票与住宿。</p>
   </section>
 
-  <section id="notes" style="border-bottom:none;">
+  <section id="notes">
     <div class="sec-head">
       <span class="sec-num">肆</span>
       <span class="sec-title">注意事项</span>
@@ -418,6 +567,52 @@
         <li><span class="mark">✕</span><span>入境时港澳护照效期须仍有 3 个月以上。</span></li>
         <li><span class="mark">✕</span><span>大陆出生者请一并携带可证明港澳永久居民身分之文件，以备入境查验。</span></li>
       </ul>
+    </div>
+  </section>
+
+  <section id="gallery" style="border-bottom:none;">
+    <div class="sec-head">
+      <span class="sec-num">伍</span>
+      <span class="sec-title">申请页面截图参考</span>
+    </div>
+    <p class="sec-sub">实际网签申请页面截图，点击图片可放大检视。</p>
+    <div class="shot-grid">
+      <button class="shot" data-full="images/01.png">
+        <img src="images/01.png" alt="网签申请首页">
+        <span class="cap">1・申请须知首页</span>
+      </button>
+      <button class="shot" data-full="images/02.png">
+        <img src="images/02.png" alt="注意事项弹窗">
+        <span class="cap">2・注意事项确认视窗</span>
+      </button>
+      <button class="shot" data-full="images/03.png">
+        <img src="images/03.png" alt="个人资料表单上半部">
+        <span class="cap">3・个人资料表单（上）</span>
+      </button>
+      <button class="shot" data-full="images/04.png">
+        <img src="images/04.png" alt="行程与地址表单">
+        <span class="cap">4・行程与地址表单</span>
+      </button>
+      <button class="shot" data-full="images/05.png">
+        <img src="images/05.png" alt="紧急联络人与说明">
+        <span class="cap">5・紧急联络人与注意事项</span>
+      </button>
+    </div>
+  </section>
+
+
+  <section id="screenshots" style="border-bottom:none;">
+    <div class="sec-head">
+      <span class="sec-num">伍</span>
+      <span class="sec-title">网签画面范例</span>
+    </div>
+    <p class="sec-sub">实际申请页面截图，点击图片可放大查看。</p>
+    <div class="gallery" id="gallery">
+      <figure onclick="openLightbox(0)"><img src="step-01.jpg" alt="1. 申请须知与注意事项"><figcaption>1. 申请须知与注意事项</figcaption></figure>
+      <figure onclick="openLightbox(1)"><img src="step-02.jpg" alt="2. 资格确认弹窗（除BNO/1999前葡萄牙护照外，外国护照不适用）"><figcaption>2. 资格确认弹窗（除BNO/1999前葡萄牙护照外，外国护照不适用）</figcaption></figure>
+      <figure onclick="openLightbox(2)"><img src="step-03.jpg" alt="3. 基本资料填写（姓名、护照、生日、职业等）"><figcaption>3. 基本资料填写（姓名、护照、生日、职业等）</figcaption></figure>
+      <figure onclick="openLightbox(3)"><img src="step-04.jpg" alt="4. 入出境日期、航班与来台地址"><figcaption>4. 入出境日期、航班与来台地址</figcaption></figure>
+      <figure onclick="openLightbox(4)"><img src="step-05.jpg" alt="5. 紧急联络人与申请说明"><figcaption>5. 紧急联络人与申请说明</figcaption></figure>
     </div>
   </section>
 
@@ -442,7 +637,61 @@
   document.querySelectorAll('#checklist li').forEach(li=>{
     li.addEventListener('click', ()=> li.classList.toggle('done'));
   });
+
+  // lightbox for screenshot gallery
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+  document.querySelectorAll('.shot').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      lightboxImg.src = btn.dataset.full;
+      lightboxImg.alt = btn.querySelector('img').alt;
+      lightbox.classList.add('open');
+    });
+  });
+  lightbox.addEventListener('click', ()=> lightbox.classList.remove('open'));
+  document.addEventListener('keydown', (e)=>{
+    if(e.key === 'Escape') lightbox.classList.remove('open');
+  });
+
+
+  // lightbox gallery
+  const galleryImgs = Array.from(document.querySelectorAll('#gallery img')).map(img => img.getAttribute('src'));
+  let lbIndex = 0;
+  function openLightbox(i){
+    lbIndex = i;
+    document.getElementById('lightbox-img').src = galleryImgs[i];
+    document.getElementById('lb-counter').textContent = (i+1) + ' / ' + galleryImgs.length;
+    document.getElementById('lightbox').classList.add('open');
+  }
+  function closeLightbox(e){
+    if(e && e.target.tagName === 'IMG') return;
+    document.getElementById('lightbox').classList.remove('open');
+  }
+  function navLightbox(dir){
+    lbIndex = (lbIndex + dir + galleryImgs.length) % galleryImgs.length;
+    document.getElementById('lightbox-img').src = galleryImgs[lbIndex];
+    document.getElementById('lb-counter').textContent = (lbIndex+1) + ' / ' + galleryImgs.length;
+  }
+  document.addEventListener('keydown', (e) => {
+    if(!document.getElementById('lightbox').classList.contains('open')) return;
+    if(e.key === 'Escape') closeLightbox();
+    if(e.key === 'ArrowLeft') navLightbox(-1);
+    if(e.key === 'ArrowRight') navLightbox(1);
+  });
 </script>
 
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" aria-label="关闭放大图片">✕</button>
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+
+<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+  <span class="lightbox-close" onclick="closeLightbox(event)">&times;</span>
+  <button class="lb-nav lb-prev" onclick="event.stopPropagation(); navLightbox(-1)">&#8249;</button>
+  <img id="lightbox-img" src="" alt="">
+  <button class="lb-nav lb-next" onclick="event.stopPropagation(); navLightbox(1)">&#8250;</button>
+  <div class="lb-counter" id="lb-counter"></div>
+</div>
 </body>
 </html>
